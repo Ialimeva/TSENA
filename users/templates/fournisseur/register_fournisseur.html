@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Admin</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}">
+                <p>{{ message }}</p>
+            </div>
+            {% endfor %}
+        {% endif %}
+        
+        <label for="nom_tsena">Nom du votre Tsena:</label><br>
+        <input type="text" name="nom_tsena" ><br>
+        
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" ><br>
+        
+        <label for="number">Numéro de téléphone:</label><br>
+        <div class="phone_number">
+            <span>+261</span>
+            <input type="tel" name="number" pattern="[0-9]{9}" placeholder="XX XXX XX"><br>
+        </div>
+        
+        <label for="password">Mot de passe:</label><br>
+        <input type="password" name="password1" ><br>
+        
+        <label for="password2">Comfirmer le mot de passe:</label><br>
+        <input type="password" name="password2" ><br>
+        
+        <input type="submit" value="S'inscrire">
+    </form>
+</body>
+</html>
