@@ -13,9 +13,5 @@ class role_user_connex(models.Model):
 
 """ Numero de telephone """
 class Number(models.Model):
-    number = models.IntegerField(max_length = 9)
-
-""" Numero et fournisseur connex """
-class fournisseur_numero(models.Model):
-    fournisseur = models.OneToOneField(User, on_delete = models.CASCADE, related_name = 'numero')
-    number = models.OneToOneField(Number, on_delete = models.CASCADE, related_name = 'fournisseur')
+    number = models.IntegerField()
+    fournisseur = models.OneToOneField(User, on_delete = models.CASCADE, related_name = 'numero', null = False)

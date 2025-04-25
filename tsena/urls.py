@@ -20,6 +20,6 @@ from users import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('inscription-admin/', views.admin_register, name = 'register_admin'),
+    path('', views.admin_register, name = 'register_admin'),
     path('inscription-fournisseur/', views.fournisseur_register, name = 'register_fournisseur'),
 ]

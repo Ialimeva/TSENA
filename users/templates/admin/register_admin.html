@@ -1,41 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-[100dvh] w-full">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Register Admin</title>
+    {% load tailwind_tags %}
+    {% load widget_tweaks %}
+    {% tailwind_css %}
 </head>
-<body>
-    <form action="" method="post">
-        {% csrf_token %}
-        
-        {% if messages %}
-            {% for message in messages %}
-            <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}">
-                <p>{{ message }}</p>
-            </div>
+<body class="h-[100dvh] w-full flex flex-col bg-white">
+    <!-- Status bar safe area -->
+    <div class="h-[32px] bg-white"></div>
+
+    <!-- Content container -->
+    <main class="flex-1 px-4 flex flex-col">
+        <form action="" method="post" novalidate class="w-full max-w-md mx-auto space-y-4">
+            {% csrf_token %}
+            {% for field in admin_form %}
+                <div class="w-full">
+                    <label class="font-bold">{{ field.label }}</label><br>
+                    {{ field|add_class:'border-pink-500' }}
+                    {% if field.errors %}
+                        <div>
+                            {% for error in field.errors %}
+                                <span>{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
             {% endfor %}
-        {% endif %}
-        
-        <label for="nom">Nom:</label><br>
-        <input type="text" name="nom" ><br>
-        
-        <label for="nom">Prenom:</label><br>
-        <input type="text" name="prenom" ><br>
-        
-        <label for="nom">Nom d'utilisateur:</label><br>
-        <input type="text" name="username" ><br>
-        
-        <label for="nom">email:</label><br>
-        <input type="email" name="email" ><br>
-        
-        <label for="nom">Mot de passe:</label><br>
-        <input type="password" name="password1" ><br>
-        
-        <label for="nom">Comfirmer le mot de passe:</label><br>
-        <input type="password" name="password2" ><br>
-        
-        <input type="submit" value="S'inscrire">
-    </form>
+            <input type="submit" value="S'inscrire">
+        </form>
+    </main>
+
+    <!-- Navigation bar safe area -->
+    <div class="h-[48px] bg-white">
+    </div>
 </body>
 </html>
