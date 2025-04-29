@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Admin</title>
+</head>
+<body>
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.name == 'phone' %}
+                <div class="">
+                    <span>{{ field.label }}</span>
+                    <span>+261</span>
+                    {{ field }}
+                </div>
+            {% else %}    
+            <label for="">{{ field.label }}</label>
+            {{ field }}
+            {% endif %}
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+        <input type="submit" value="S'inscrire">
+    </form>
+</body>
+</html>

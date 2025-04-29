@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" class="h-[100dvh] w-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Register Admin</title>
+    {% load tailwind_tags %}
+    {% load widget_tweaks %}
+    {% tailwind_css %}
+</head>
+<body class="h-[100dvh] w-full flex flex-col bg-white">
+    <!-- Status bar safe area -->
+    <div class="h-[32px] bg-white"></div>
+
+    <!-- Content container -->
+    <main class="flex-1 px-4 flex flex-col">
+        <form action="" method="post" novalidate class="w-full max-w-md mx-auto space-y-4">
+            {% csrf_token %}
+            {% for field in admin_form %}
+                <div class="w-full">
+                    <label class="font-bold">{{ field.label }}</label><br>
+                    {{ field|add_class:'border-pink-500' }}
+                    {% if field.errors %}
+                        <div>
+                            {% for error in field.errors %}
+                                <span>{{ error }}</span><br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <input type="submit" value="S'inscrire">
+        </form>
+    </main>
+
+    <!-- Navigation bar safe area -->
+    <div class="h-[48px] bg-white">
+    </div>
+</body>
+</html>
